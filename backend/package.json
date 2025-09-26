@@ -1,0 +1,31 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "a websocket server for asteria",
+  "main": "dist/index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "npm run build && node --experimental-specifier-resolution=node dist/backend/index.js",
+    "build": "tsc && npm run copy-assets",
+    "start": "npm run build && node --experimental-specifier-resolution=node dist/backend/index.js",
+    "copy-assets": "copyfiles -u 5 \"../offchain/src/admin/pellet/**/*\" dist/offchain/src/admin/pellet/"
+  },
+  "dependencies": {
+    "@meshsdk/core": "^1.7.20",
+    "@meshsdk/core-csl": "^1.9.0-beta.4",
+    "@meshsdk/core-cst": "^1.9.0-beta.4",
+    "@meshsdk/hydra": "^1.9.0-beta-39",
+    "dotenv": "^17.2.2",
+    "express": "^5.1.0",
+    "next": "14.2.33",
+    "socket.io": "^4.8.1",
+    "tsup": "8.5.0"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.3",
+    "@types/node": "^20.5.0",
+    "copyfiles": "^2.4.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3"
+  }
+}

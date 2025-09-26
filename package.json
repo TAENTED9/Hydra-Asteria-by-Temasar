@@ -1,0 +1,38 @@
+{
+  "name": "hydra-asteria",
+  "private": true,
+  "workspaces": [
+    "backend",
+    "offchain",
+    "frontend"
+  ],
+  "type": "module",
+  "scripts": {
+    "dev": "concurrently \"npm --prefix frontend run dev\" \"npm --prefix backend run dev\"",
+    "build": "npm --prefix backend run build && npm --prefix offchain run build",
+    "start": "npm --prefix backend run start",
+    "deploy": "tsx ./offchain/src/admin/deploy/deployAll.ts && copyfiles -u 5 ./offchain/src/admin/deploy/ref-script/* ./backend/src/admin/deploy/ref-script/"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2",
+    "copyfiles": "^2.4.1",
+    "nodemon": "^3.1.7",
+    "tsup": "^8.5.0",
+    "tsx": "^4.20.5",
+    "turbo": "^1.12.0",
+    "typescript": "^5.8.3"
+  },
+  "overrides": {
+    "react": "18.3.1",
+    "react-dom": "18.3.1"
+  },
+  "dependencies": {
+    "@martifylabs/mesh": "^1.2.0",
+    "@meshsdk/core": "^1.7.20",
+    "@utxorpc/sdk": "^0.7.0",
+    "lucid-cardano": "^0.10.11",
+    "next": "14.2.33",
+    "shiki": "^3.12.2",
+    "zustand": "^5.0.8"
+  }
+}
